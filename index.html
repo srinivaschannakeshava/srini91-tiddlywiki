@@ -197,11 +197,25 @@ Error message and password prompt
 
 <li>$:/view</li>
 
+<li>Adding docker-user to group</li>
+
 <li>Cert-Manager to K3S</li>
+
+<li>Creating systemd service file</li>
+
+<li>Grpc Notes</li>
 
 <li>Ideation - ToDo</li>
 
 <li>Important Links</li>
+
+<li>Java 11 on armV6 PI/PiZERO old</li>
+
+<li>Notes on OCI and CRI</li>
+
+<li>Pi zero - Readme</li>
+
+<li>Podman</li>
 
 <li>Test Wiki</li>
 
@@ -249,9 +263,9 @@ Error message and password prompt
 
 {"title":"$:/SiteTitle","created":"20220920153937511","creator":"srini91","modified":"20220920153940719","modifier":"srini91","type":"text/vnd.tiddlywiki","text":"Srini91 Wiki","revision":"0","bag":"default"},
 
-{"created":"20220926152153582","creator":"srini91","title":"$:/state/tab-1749438307","text":"$:/core/ui/ControlPanel/Saving","modified":"20220926152153582","modifier":"srini91","revision":"1","bag":"default"},
+{"created":"20221030170248276","creator":"srini91","title":"$:/state/tab-1749438307","text":"$:/core/ui/ControlPanel/Saving","modified":"20221030170248276","modifier":"srini91","revision":"1","bag":"default"},
 
-{"created":"20220926152154956","creator":"srini91","title":"$:/state/tab-2065006209","text":"$:/core/ui/ControlPanel/Saving/GitHub","modified":"20220926152154956","modifier":"srini91","revision":"1","bag":"default"},
+{"created":"20221030170250489","creator":"srini91","title":"$:/state/tab-2065006209","text":"$:/core/ui/ControlPanel/Saving/GitHub","modified":"20221030170314820","modifier":"srini91","revision":"3","bag":"default"},
 
 {"title":"$:/status/IsAnonymous","text":"no","revision":"1","bag":"default"},
 
@@ -263,7 +277,7 @@ Error message and password prompt
 
 {"title":"$:/status/UserName","text":"srini91","revision":"1","bag":"default"},
 
-{"created":"20220926152151577","creator":"srini91","title":"$:/StoryList","text":"","list":"$:/ControlPanel [[Ideation - ToDo]] [[Cert-Manager to K3S]] [[Important Links]] [[Test Wiki]]","modified":"20220926152151577","modifier":"srini91","revision":"2","bag":"default"},
+{"created":"20221030170246568","creator":"srini91","title":"$:/StoryList","text":"","list":"$:/ControlPanel [[Java 11 on armV6 PI/PiZERO old]] [[Creating systemd service file]] [[Notes on OCI and CRI]] [[Pi zero - Readme]] [[Adding docker-user to group]] [[Grpc Notes]] Podman [[Ideation - ToDo]] [[Cert-Manager to K3S]] [[Important Links]] [[Test Wiki]]","modified":"20221030170246568","modifier":"srini91","revision":"2","bag":"default"},
 
 {"title":"$:/theme","created":"20220920153820784","creator":"srini91","modified":"20220921161111829","modifier":"srini91","type":"text/vnd.tiddlywiki","text":"$:/themes/nico/notebook","revision":"0","bag":"default"},
 
@@ -275,11 +289,25 @@ Error message and password prompt
 
 {"title":"$:/view","created":"20220920155455095","creator":"srini91","modified":"20220920155502573","modifier":"srini91","type":"text/vnd.tiddlywiki","text":"classic","revision":"0","bag":"default"},
 
+{"title":"Adding docker-user to group","text":"\n- https://icij.gitbook.io/datashare/faq-errors/you-are-not-allowed-to-use-docker-you-must-be-in-the-docker-users-group-.-what-should-i-do\n- https://logfetch.com/add-to-docker-users-group-error/\n\n","type":"text/x-markdown","created":"20221010043202717","creator":"srini91","modified":"20221010043715569","modifier":"srini91","tags":"docker container","revision":"0","bag":"default"},
+
 {"title":"Cert-Manager to K3S","text":"# Adding letsencrypt certs to K3s Cluster\n\n- [https://cert-manager.io/docs/](https://cert-manager.io/docs/) - documentation\n\n## Steps \n\n\n```\nkubectl create namespace cert-manager\n\nhttps://opensource.com/article/20/3/ssl-letsencrypt-k3s\n```\n\n> look into default https on k3s - https://itobey.dev/index.php/redirect-http-to-https-traefik-middleware-kubernetes/\n\n","type":"text/x-markdown","created":"20220921161020761","creator":"srini91","modified":"20220922162944701","modifier":"srini91","tags":"k3s pi","revision":"0","bag":"default"},
+
+{"title":"Creating systemd service file","text":"# System service \n\n- First, create a service definition file /etc/systemd/system/myapp.service with this content:\n\n```\n[Unit]\nDescription=My App\nAfter=network-online.target #this makes service to start only after network available\n\n\n[Service]\nUser=nobody\n# The configuration file application.properties should be here:\nWorkingDirectory=/home/appservice/myapp/files \nExecStart=/usr/bin/java -Xmx256m -jar myapp.jar\nSuccessExitStatus=143\n\n[Install]\nWantedBy=multi-user.target\n```\n\n- Then, notify systemd of the new service file:\n\n``` systemctl daemon-reload ```\n\n- Then enable it, so it runs on boot:\n\n``` systemctl enable myapp.service ```\n\n- At the end you can use the following commands to start/stop your new service:\n\n```\nsystemctl start myapp\nsystemctl stop myapp\n```","type":"text/x-markdown","created":"20221027060347794","creator":"srini91","modified":"20221027060732082","modifier":"srini91","tags":"pi linux","revision":"0","bag":"default"},
+
+{"title":"Grpc Notes","text":"# \n\n - .equals method in grpc compares every field for same value and return true in case all field value are same.\n\n> Protobuf is faster than json as the data exchange is in bytes\n> \n","type":"text/x-markdown","created":"20220929091540456","creator":"srini91","modified":"20220929103244608","modifier":"srini91","tags":"","revision":"0","bag":"default"},
 
 {"title":"Ideation - ToDo","text":"# Scratch pad on ToDo / Ideas in mind\n","type":"text/x-markdown","created":"20220922162945987","creator":"srini91","modified":"20220922163040355","modifier":"srini91","tags":"","revision":"0","bag":"default"},
 
 {"title":"Important Links","text":"# Github links\n\n- [https://github.com/srinivaschannakeshava](https://github.com/srinivaschannakeshava) - My repo\n- [https://certbot.eff.org/](https://certbot.eff.org/) - Lets encrypt for https\n- [https://github.com/cetic/helm-nifi](https://github.com/cetic/helm-nifi) - Helm Nifi \n- [https://superset.apache.org/](https://superset.apache.org/) - Visualization framework\n- []","type":"text/x-markdown","created":"20220921044817714","creator":"srini91","modified":"20220921045254322","modifier":"srini91","tags":"","revision":"0","bag":"default"},
+
+{"title":"Java 11 on armV6 PI/PiZERO old","text":"> `sudo wget https://cdn.azul.com/zulu-embedded/bin/zulu11.60.19-ca-jdk11.0.17-linux_aarch32hf.tar.gz`\n\n> `sudo tar -xzvf zulu11.60.19-ca-jdk11.0.17-linux_aarch32hf.tar.gz`\n\n> `sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/zulu11.60.19-ca-jdk11.0.17-linux_aarch32hf/bin/java 1`\n\n> `sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/zulu11.60.19-ca-jdk11.0.17-linux_aarch32hf/bin/javac 1`\n\n> `sudo update-alternatives --config java `\n","type":"text/x-markdown","created":"20221028144643865","creator":"srini91","modified":"20221028160704198","modifier":"srini91","tags":"","revision":"0","bag":"default"},
+
+{"title":"Notes on OCI and CRI","text":"# OCI and CRI\n\n- Containers are fundamentally composed of several underlying kernel primitives: namespaces (who you are allowed to talk to),\ncgroups (the amount of resources you are allowed to use), and LSMs (Linux Security Modules—what you are allowed to do). \nTogether, these kernel primitives allow us to set up secure, isolated, and metered execution environments for our processes.\n\n\n## Container Runtime:\n\n- it’s software that runs and manages the components required to run containers. As mentioned above,\nthese tools make it easier to securely execute and efficiently deploy containers, and are a key component of container management.\n\n- runc - go lang based\n- crun - c based - faster and very light weight\n\n\n\n## Two most important standards are:\n\n- CRI - Container Runtime Interface. It allows Kubernetes to be compatible with different container runtimes, including Docker's containerd.\n- OCI - Open Container Initiative. It standardizes container images and runtimes.\nhigh-level spec describing a container runtime from a container-orchestration perspective: the Container Runtime Interface\n\n### CRI\n\n- The CRI has additional concerns over an OCI Runtime including image management and distribution, storage, snapshotting, networking (distinct from the CNI), and more. \n- A CRI has the functionality required to leverage containers in dynamic cloud environments, unlike OCI Runtimes which are tightly focused on creating containers on a machine. \n\n\n## Container Engines\n\n- You may notice in reading the above that Docker is not a CRI or OCI implementation but uses both (via containerd and runC). \nIn fact, it has additional features like image building and signing that are out of scope of either CRI or OCI specs. So where does this fit in?\n\n- Docker calls their product the “Docker Engine”, and generically these full container tools suites may be referred to as Container Engines. No one except Docker provides such a full featured single executable, but we can piece a comparable suite of tools together from the Containers Tools project.\n\n- The Container Tools project follows the UNIX philosophy of small tools which do one thing well:\n\n> podman - image running\n\n> buildah - image building\n\n> skopeo - image distribution","type":"text/x-markdown","created":"20221026104739215","creator":"srini91","modified":"20221027061103281","modifier":"srini91","tags":"container docker k3s podman","revision":"0","bag":"default"},
+
+{"title":"Pi zero - Readme","text":"# PI zero Headless\n\n- [https://www.factoryforward.com/pi-zero-w-headless-setup-windows10-rndis-driver-issue-resolved/]()\n\n- [https://www.youtube.com/watch?v=XaTmG708Mss&ab_channel=CineSpirit]()\n\n# Cgroups on Pi\n\n[https://downey.io/blog/exploring-cgroups-raspberry-pi/]()","type":"text/x-markdown","created":"20221010070316023","creator":"srini91","modified":"20221011085159677","modifier":"srini91","tags":"pi [[pi zero]] container","revision":"0","bag":"default"},
+
+{"title":"Podman","text":"# Running containers with resource limits fails with a permissions error\n\n- On some systemd-based systems, non-root users do not have resource limit delegation permissions. This causes setting resource limits to fail.\n\n## Symptom\n\nRunning a container with a resource limit options will fail with an error similar to the following:\n\n--cpus, --cpu-period, --cpu-quota, --cpu-shares:\n\nError: OCI runtime error: crun: the requested cgroup controller `cpu` is not available\n--cpuset-cpus, --cpuset-mems:\n\nError: OCI runtime error: crun: the requested cgroup controller `cpuset` is not available\nThis means that resource limit delegation is not enabled for the current user.\n\nSolution\nYou can verify whether resource limit delegation is enabled by running the following command:\n\n`$ cat \"/sys/fs/cgroup/user.slice/user-$(id -u).slice/user@$(id -u).service/cgroup.controllers\"`\n\nExample output might be:\n\n>memory pids\n\nIn the above example, cpu and cpuset are not listed, which means the current user does not have permission to set CPU or CPUSET limits.\n\nIf you want to enable CPU or CPUSET limit delegation for all users, you can create the file `/etc/systemd/system/user@.service.d/delegate.conf` with the contents:\n\n``` \n[Service]\nDelegate=memory pids cpu cpuset\n ```\nAfter logging out and logging back in, you should have permission to set CPU and CPUSET limits.\n\n> Note - more info at [https://github.com/containers/podman/blob/main/troubleshooting.md#26-running-containers-with-resource-limits-fails-with-a-permissions-error]()","type":"text/x-markdown","created":"20220928165902073","creator":"srini91","modified":"20221010090607041","modifier":"srini91","tags":"pi container podman","revision":"0","bag":"default"},
 
 {"title":"Test Wiki","text":"# Test Wiki\n\n- Testing TiddlyWiki","type":"text/x-markdown","created":"20220920155337127","creator":"srini91","modified":"20220920155418081","modifier":"srini91","tags":"","revision":"0","bag":"default"}
 ]</script><div id="storeArea" style="display:none;"></div>
